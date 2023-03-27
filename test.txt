@@ -1,0 +1,47 @@
+
+# These are fake questions and answers to test the AI. They are not real!
+
+Question: What was the name of the street where I lived when I was 5 years old?
+Answer: Willow Avenue.
+
+Question: What was the first foreign language I ever learned in school?
+Answer: French.
+
+Question: What was the name of the first pet I ever had?
+Answer: Snuggles.
+
+Question: What was the title of the first book that made me cry?
+Answer: Where the Red Fern Grows.
+
+Question: What was the name of the first person I ever kissed?
+Answer: Jack.
+
+Question: What was the make and model of my first car?
+Answer: 1998 Honda Civic.
+
+Question: What was the name of the movie that scared me so much I couldn't sleep?
+Answer: The Exorcist.
+
+Question: What was the name of the first band I ever saw in concert?
+Answer: Green Day.
+
+Question: What was the name of the person who gave me my first job?
+Answer: Susan.
+
+Question: What was the name of the first country I ever visited outside of my own?
+Answer: Japan.
+
+Question: What was the name of the first roller coaster I ever rode?
+Answer: The Cyclone.
+
+Question: What was the name of the first dish I ever learned to cook?
+Answer: Spaghetti and meatballs.
+
+Question: What was the name of the street where I had my first apartment?
+Answer: Chestnut Street.
+
+Question: What was the name of the first musical instrument I ever played?
+Answer: Piano.
+
+Question: What was the name of the first celebrity I ever met in person?
+Answer: Hugh Jackman.
