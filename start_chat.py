@@ -34,15 +34,25 @@ def make_curl_command(url, method="GET"):
 def get_timestamp():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-def check_token_count(text, max_tokens=4096):
+def check_token_count(text, max_tokens):
     token_count = len(text.split())
     return token_count < max_tokens
+
+def trim_content(text, max_tokens):
+    tokens = text.split()
+    if len(tokens) > max_tokens:
+        tokens = tokens[:max_tokens]
+        text = ' '.join(tokens)
+        text += " [Content trimmed due to token limit]"
+    return text
 
 def main():
     # Initialize conversation with a system message
     conversation = [
         {"role": "system", "content": "You are a helpful assistant that can fetch local files or access web resources using file: and curl: commands."}
     ]
+
+    max_tokens = 3000
 
     while True:
         user_input = input("User: ")
@@ -62,13 +72,30 @@ def main():
                     else:
                         content = make_curl_command(resource)
 
-                    if check_token_count(content):
-                        conversation.append({"role": "user", "content": content})
-                        assistant_response = chat_with_gpt("gpt-3.5-turbo", conversation)
-                        print("Assistant:", assistant_response)
-                        conversation.append({"role": "assistant", "content": assistant_response})
-                    else:
-                        print("The content exceeds the token limit.")
+                    trimmed_content = trim_content(content, max_tokens)
+                    if content != trimmed_content:
+                        print("Content has been trimmed due to token limit.")
+
+                    conversation.append({"role": "user", "content": trimmed_content})
+                    assistant_response = chat_with_gpt("gpt-3.5-turbo", conversation)
+                    print("Assistant:", assistant_response)
+                    conversation.append({"role": "assistant", "content": assistant_response})
+
+                    # Placeholder for handling remaining chunks
+                    remaining_chunks = content[len(trimmed_content):]
+                    while len(remaining_chunks) > 0:
+                        # Prompt the user for confirmation to process the remaining chunks
+                        continue_processing = input("There are additional chunks to be processed. Do you want to continue? [y/n]: ")
+                        if continue_processing.lower() == "y":
+                            next_chunk = trim_content(remaining_chunks, max_tokens)
+                            conversation.append({"role": "user", "content": next_chunk})
+                            assistant_response = chat_with_gpt("gpt-3.5-turbo", conversation)
+                            print("Assistant:", assistant_response)
+                            conversation.append({"role": "assistant", "content": assistant_response})
+                            remaining_chunks = remaining_chunks[len(next_chunk):]
+                        else:
+                            break
+
                 except (FileNotFoundError, Exception) as e:
                     print(f"Error while fetching {request_type} resource:", str(e))
             else:
