@@ -52,8 +52,6 @@ def main():
         {"role": "system", "content": "You are a helpful assistant that can fetch local files or access web resources using file: and curl: commands."}
     ]
 
-    max_tokens = 3000
-
     while True:
         user_input = input("User: ")
         if user_input.lower() == "exit":
@@ -72,30 +70,18 @@ def main():
                     else:
                         content = make_curl_command(resource)
 
-                    trimmed_content = trim_content(content, max_tokens)
-                    if content != trimmed_content:
-                        print("Content has been trimmed due to token limit.")
+                    content_chunks = [content[i:i + 4000] for i in range(0, len(content), 4000)]
+                    first_chunk = content_chunks[0]
+                    remaining_chunks = content_chunks[1:]
 
-                    conversation.append({"role": "user", "content": trimmed_content})
+                    conversation.append({"role": "user", "content": first_chunk})
                     assistant_response = chat_with_gpt("gpt-3.5-turbo", conversation)
                     print("Assistant:", assistant_response)
                     conversation.append({"role": "assistant", "content": assistant_response})
 
-                    # Placeholder for handling remaining chunks
-                    remaining_chunks = content[len(trimmed_content):]
-                    while len(remaining_chunks) > 0:
-                        # Prompt the user for confirmation to process the remaining chunks
-                        continue_processing = input("There are additional chunks to be processed. Do you want to continue? [y/n]: ")
-                        if continue_processing.lower() == "y":
-                            next_chunk = trim_content(remaining_chunks, max_tokens)
-                            conversation.append({"role": "user", "content": next_chunk})
-                            assistant_response = chat_with_gpt("gpt-3.5-turbo", conversation)
-                            print("Assistant:", assistant_response)
-                            conversation.append({"role": "assistant", "content": assistant_response})
-                            remaining_chunks = remaining_chunks[len(next_chunk):]
-                        else:
-                            break
-
+                    # Placeholder: handle remaining_chunks here (e.g., enhance the application to request additional chunks)
+                    if remaining_chunks:
+                        print("There are additional chunks to be processed.")
                 except (FileNotFoundError, Exception) as e:
                     print(f"Error while fetching {request_type} resource:", str(e))
             else:

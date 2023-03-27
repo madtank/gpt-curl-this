@@ -3,6 +3,8 @@
 all curl commands are intiiaed with "curl:" folled by what typically comes after curl on cli.
 
 curl: -X GET -H "Content-type: application/json" "https://saurav.tech/NewsAPI/top-headlines/category/technology/us.json"
+curl -X GET -H "Content-type: application/json" "https://saurav.tech/NewsAPI/top-headlines/category/technology/us.json"
+
 
 # Fake questions and answers to test the AI. They are not real!
 
