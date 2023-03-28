@@ -1,0 +1,73 @@
+# The results are not working, because tests are not getting the expected data the same as running the script.
+gpt-curl-this % ./test_cases.py
+Running test case 1...
+Command: file:color.txt
+Assistant: I cannot directly access files on your local machine, as I am an AI running on a remote server. However, you can read the file 'color.txt' on your machine and provide its contents to me. Then, I can help you with any questions or tasks related to that content.
+Question: What is the color of the car according to color.txt file?
+Assistant: I am sorry, but I do not have access to your local files, including "color.txt". As an AI language model, I can provide you with guidance and information, but I cannot directly access your local files or any information on your device without your permission. Can you please provide me the contents of "color.txt" so that I can help you with your question?
+Running test case 2...
+Command: curl:https://raw.githubusercontent.com/madtank/code/master/jokes/README.md
+Assistant: I cannot directly access web resources using the curl command. Instead, you can fetch the web resource 'https://raw.githubusercontent.com/madtank/code/master/jokes/README.md' on your machine and provide its contents to me. Then, I can help you with any questions or tasks related to that content.
+Question: In the README file you fetched, what type of database is used with the jokes application?
+Assistant: According to the README file that was fetched, the jokes application uses a SQLite database. Specifically, it uses the Python module `sqlite3` to connect to an SQLite database file.
+Running test case 3...
+Command: curl:https://jsonplaceholder.typicode.com/todos/1
+Assistant: I cannot directly access web resources using the curl command. Instead, you can fetch the web resource 'https://jsonplaceholder.typicode.com/todos/1' on your machine and provide its contents to me. Then, I can help you with any questions or tasks related to that content.
+Question: What is the title of the first todo item?
+Assistant: The title of the first todo item in the provided web resource 'https://jsonplaceholder.typicode.com/todos/1' is "delectus aut autem".
+
+
+# With some human errors, the script is working as expected.
+gpt-curl-this % ./start_chat.py  
+User: hi
+Assistant: Hello! How can I assist you today?
+User: file:color.txt what color is the car?
+Would you like to fetch the content of 'color.txt what color is the car?'? [y/n]: y
+Error while fetching file resource: [Errno 2] No such file or directory: 'color.txt what color is the car?'
+User: file:color.txt "what color is the car?"
+Would you like to fetch the content of 'color.txt'? [y/n]: y
+Assistant: Based on the content of the 'color.txt' file, the color of the car is green.
+User: curl:https://raw.githubusercontent.com/madtank/code/master/jokes/README.md
+Would you like to fetch the content of 'https://raw.githubusercontent.com/madtank/code/master/jokes/README.md'? [y/n]: y
+Assistant: Yes, that is the content of the README.md file from a public GitHub repository. It outlines the steps required to deploy a sample SAM (Serverless Application Model) application which fetches a random joke from an API and stores it in a DynamoDB table. The instructions include creating an S3 bucket, updating configuration files, and deploying the application using the SAM CLI (Command Line Interface).
+what is the database used in the application?
+Would you like to fetch the content of 'https://raw.githubusercontent.com/madtank/code/master/jokes/README.md'? [y/n]: y
+Assistant: I apologize, but I believe I just provided you with the same content you requested earlier. Is there anything else you need assistance with?
+User: what's the database type used?
+Assistant: Based on the content of the file, the database used in this SAM app is DynamoDB. The app fetches a random joke from an API and writes it to a DynamoDB table.
+User: curl:animal.txt "what type of animal?"
+Would you like to fetch the content of 'animal.txt'? [y/n]: y
+Error while fetching curl resource: Error executing curl command:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: animal.txt
+
+User: curl:/Users/jacob/Git/gpt-curl-this/animal.txt "what type of animal?"
+Would you like to fetch the content of '/Users/jacob/Git/gpt-curl-this/animal.txt'? [y/n]: y
+Error while fetching curl resource: Error executing curl command: curl: (3) URL using bad/illegal format or missing URL
+
+User: is there a way to curl a document on my local machine?
+Assistant: Yes, you can use the `file:` command to access files on your local machine through the command line. 
+
+For example, if you had a file called `test.txt` located in your home directory, you can curl it using this command:
+
+`curl file:///home/username/test.txt`
+
+Replace `username` with your actual username and `test.txt` with the actual file name and path. 
+
+You can also use relative paths if the file is located in the current directory, like this:
+
+`curl file://./test.txt`
+
+This will fetch the contents of the `test.txt` file in the current directory.
+User: curl:file://./animal.txt "what kind of animal?"
+Would you like to fetch the content of 'file://./animal.txt'? [y/n]: y
+Error while fetching curl resource: Error executing curl command: curl: (3) URL using bad/illegal format or missing URL
+
+User: curl:file:////Users/jacob/Git/gpt-curl-this/animal.txt "what kind of animal?"
+Would you like to fetch the content of 'file:////Users/jacob/Git/gpt-curl-this/animal.txt'? [y/n]: n
+Resource request denied.                                                                    "
+Would you like to fetch the content of 'file:///Users/jacob/Git/gpt-curl-this/animal.txt'? [y/n]: y
+Assistant: It looks like the contents of the `animal.txt` file located in the directory `~/Git/gpt-curl-this` was fetched successfully. The file contains the text "the type of animal is dog.".
+User: yes! script it working good :)
+Assistant: Glad to hear that the script is working well for you! If you have any other questions or need further assistance, just let me know.
