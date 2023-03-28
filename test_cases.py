@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
+# Test cases are not sending file or doing curl commands at this time.
+
 import os
+from termcolor import colored
 from start_chat import run_single_test
 
 def run_test_cases():
@@ -20,7 +23,7 @@ def run_test_cases():
     ]
 
     for idx, test_case in enumerate(test_cases, 1):
-        print(f"Running test case {idx}...")
+        print(colored(f"Running test case {idx}...", "green"))
         run_single_test(test_case['command'], test_case['question'])
 
 if __name__ == "__main__":

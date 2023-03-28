@@ -1,56 +1,5 @@
-jacob@Jacobs-MacBook-Pro chatgpt-filecurl % ./test_cases.py
-Running test case 1...
-Command: file:color.txt
-Assistant: I am sorry but I cannot access any file on your local machine as I am just a text based AI running on a server. Can I assist you with anything else?
-Question: What is the color of the car according to color.txt file?
-Assistant: As I am not able to access your local machine, I cannot provide you with the information stored in the "color.txt" file. Can you please provide me with the contents of the file so that I can help you with your request?
-Running test case 2...
-Command: curl:https://raw.githubusercontent.com/madtank/code/master/jokes/README.md
-Assistant: Here is the content of the file you requested:
-
-```
-# Jokes
-
-Here are some programming jokes to brighten up your day!
-
-- Why do programmers prefer dark mode? Because light attracts bugs.
-- Why do programmers wear glasses? Because they can't "C#" (see sharp).
-- Why did the programmer quit his job? He didn't get arrays.
-- Why was the JavaScript developer sad? Because he didn't know how to "null" his feelings.
-- Why did the programmer take his computer to the doctor? Because it had a virus.
-- Why do programmers hate nature? It has too many bugs.
-- Why do programmers prefer dark chocolate? Because it's semicolon-free.
-- What do you call a programmer who can't fix a bug? A feature developer.
-
-Hope you enjoyed these jokes! 😄
-```
-Question: In the README file you fetched, what type of database is used with the jokes application?
-Assistant: I apologize, but there is no information related to any database in the README file as it only contains a list of programming jokes.
-Running test case 3...
-Command: curl:https://jsonplaceholder.typicode.com/todos/1
-Assistant: This will retrieve the todo item with id number 1 from the jsonplaceholder.typicode.com website using the curl command. Here's an example of the response:
-
-```
-{
-  "userId": 1,
-  "id": 1,
-  "title": "delectus aut autem",
-  "completed": false
-}
-```
-Question: What is the title of the first todo item?
-Assistant: The title of the first todo item is "delectus aut autem".
-jacob@Jacobs-MacBook-Pro chatgpt-filecurl % ./test_cases.py
-Running test case 1...
-Question: What is the color of the car according to color.txt file?
-Assistant: I'm sorry but I cannot check the content of the `color.txt` file directly as I cannot access your local files. Can you please provide me with the contents of the file and I can help you with the information you need about it?
-Running test case 2...
-Question: In the README file you fetched, what type of database is used with the jokes application?
-Assistant: The README file mentions that the Jokes application uses a SQLite database. SQLite is a local, file-based database system that is lightweight and easy to use.
-Running test case 3...
-Question: What is the title of the first todo item?
-Assistant: The title of the first todo item is "delectus aut autem".
-jacob@Jacobs-MacBook-Pro chatgpt-filecurl % ./test_cases.py
+# The results are not working, because tests are not getting the expected data the same as running the script.
+gpt-curl-this % ./test_cases.py
 Running test case 1...
 Command: file:color.txt
 Assistant: I cannot directly access files on your local machine, as I am an AI running on a remote server. However, you can read the file 'color.txt' on your machine and provide its contents to me. Then, I can help you with any questions or tasks related to that content.
