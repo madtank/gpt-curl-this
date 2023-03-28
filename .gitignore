@@ -130,4 +130,7 @@ dmypy.json
 
 # Testing
 test.txt
+test.py
+test_cases.py
 test/*
+results.txt
