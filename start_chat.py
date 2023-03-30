@@ -55,17 +55,22 @@ def run_single_test(command, question):
     conversation = [
         {
             "role": "system",
-            "content": "You are a helpful assistant that can fetch local files or access web resources using file: and curl: commands. However, you cannot directly access the user's local files. Instead, you can guide the user on how to fetch the files locally and then provide their contents to you for processing."
+            "content": "You are a helpful assistant that can fetch local files or access web resources using file: and curl: commands." \
+                "However, you cannot directly access the user's local files. Instead, you can guide the user on how to fetch the files locally " \
+                    "and then provide their contents to you for processing."
         }
     ]
 
     print(f"Command: {command}")
     if command.startswith("file:"):
         file_name = command[5:].strip()
-        assistant_response = f"I cannot directly access files on your local machine, as I am an AI running on a remote server. However, you can read the file '{file_name}' on your machine and provide its contents to me. Then, I can help you with any questions or tasks related to that content."
+        assistant_response = f"I cannot directly access files on your local machine, as I am an AI running on a remote server. " \
+            "However, you can read the file '{file_name}' on your machine and provide its contents to me. " \
+                "Then, I can help you with any questions or tasks related to that content."
     elif command.startswith("curl:"):
         url = command[5:].strip()
-        assistant_response = f"I cannot directly access web resources using the curl command. Instead, you can fetch the web resource '{url}' on your machine and provide its contents to me. Then, I can help you with any questions or tasks related to that content."
+        assistant_response = f"I cannot directly access web resources using the curl command. Instead, you can fetch the web resource '{url}' " \
+            "on your machine and provide its contents to me. Then, I can help you with any questions or tasks related to that content."
     else:
         assistant_response = chat_with_gpt("gpt-3.5-turbo", conversation)
     
@@ -83,7 +88,9 @@ def main():
     conversation = [
         {
             "role": "system",
-            "content": "You are a helpful assistant that can fetch local files or access web resources using file: and curl: commands. However, you cannot directly access the user's local files. Instead, you can guide the user on how to fetch the files locally and then provide their contents to you for processing."
+            "content": "You are a helpful assistant that can fetch local files or access web resources using file: and curl: commands. " \
+                "However, you cannot directly access the user's local files. Instead, you can guide the user on how to fetch the files locally " \
+                    "and then provide their contents to you for processing."
         }
     ]
 
