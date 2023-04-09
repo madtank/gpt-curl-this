@@ -55,7 +55,7 @@ def run_single_test(command, question):
     conversation = [
         {
             "role": "system",
-            "content": "You are a helpful assistant that can fetch local files or access web resources using file: and curl: commands. However, you cannot directly access the user's local files. Instead, you can guide the user on how to fetch the files locally and then provide their contents to you for processing."
+            "content": "You are a helpful assistant that can fetch local files or access web resources using file and curl commands. However, you cannot directly access the user's local files. Instead, you can guide the user on how to fetch the files locally and then provide their contents to you for processing."
         }
     ]
 
@@ -63,7 +63,7 @@ def run_single_test(command, question):
     if command.startswith("file:"):
         file_name = command[5:].strip()
         assistant_response = f"I cannot directly access files on your local machine, as I am an AI running on a remote server. However, you can read the file '{file_name}' on your machine and provide its contents to me. Then, I can help you with any questions or tasks related to that content."
-    elif command.startswith("curl:"):
+    elif command.startswith("curl"):
         url = command[5:].strip()
         assistant_response = f"I cannot directly access web resources using the curl command. Instead, you can fetch the web resource '{url}' on your machine and provide its contents to me. Then, I can help you with any questions or tasks related to that content."
     else:
@@ -83,7 +83,7 @@ def main():
     conversation = [
         {
             "role": "system",
-            "content": "You are a helpful assistant that can fetch local files or access web resources using file: and curl: commands. However, you cannot directly access the user's local files. Instead, you can guide the user on how to fetch the files locally and then provide their contents to you for processing."
+            "content": "You are a helpful assistant that can fetch local files or access web resources using file: and curl commands. However, you cannot directly access the user's local files. Instead, you can guide the user on how to fetch the files locally and then provide their contents to you for processing."
         }
     ]
 
@@ -96,8 +96,8 @@ def main():
         if user_input.lower().strip() == "exit":
             break
 
-        if user_input.startswith("file:") or user_input.startswith("curl:"):
-            request_type = "file" if user_input.startswith("file:") else "curl"
+        if user_input.startswith("file:") or user_input.startswith("curl"):
+            request_type = "file:" if user_input.startswith("file:") else "curl"
             resource_and_message = user_input[5:].split('"', 1)
             resource = resource_and_message[0].strip()
             message = resource_and_message[1].strip()[:-1] if len(resource_and_message) > 1 else ""
@@ -106,16 +106,18 @@ def main():
 
             if approval.lower() == "y":
                 try:
-                    if request_type == "file":
+                    if request_type == "file:":
                         # Fetch the file content
                         content = read_file(resource, message)
+                        print('message sent to assistant', content)
                         # Include context in the message
-                        user_input = f"This is the content of the file '{resource}' you have just accessed using your capabilities:\n\n{content}"
+                        user_input = f"This is the content of the file: '{resource}' you have just accessed using your capabilities:\n\n{content}"
                     else:
                         # Fetch the content using curl
                         content = make_curl_command(resource)
                         # Include context in the message
                         user_input = f"This is the content you have just fetched using a curl command to '{resource}':\n\n{content}"
+                        print('message sent to assistant', user_input)
 
                     # Send the message to the assistant
                     conversation.append({"role": "user", "content": user_input})
