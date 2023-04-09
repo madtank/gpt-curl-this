@@ -2,11 +2,13 @@
 
 This program let's you say, curl this location, and the results are printed and sent to chatgpt.
 
-Examples:
+## Examples:
 curl https://raw.githubusercontent.com/madtank/code/master/jokes/README.md "What type of database is used?"
 
 User: curl https://raw.githubusercontent.com/madtank/code/master/jokes/README.md "What type of database is used?"
+
 Would you like to fetch the content of 'https://raw.githubusercontent.com/madtank/code/master/jokes/README.md'? [y/n]: y
+
 message sent to assistant This is the content you have just fetched using a curl command to 'https://raw.githubusercontent.com/madtank/code/master/jokes/README.md':
 
 <results are printed and sent to gpt>
@@ -17,6 +19,9 @@ To get started, you will need to follow the steps outlined in the README.md file
 
 Once your deployment is successful, you should be able to invoke your lambda function and retrieve random jokes from the API which can be written to the DynamoDB table.
 
+## You can also read local files with file: command.
+
 read a local file and ask about this.
+
 file:text.txt "What is the color of the grass accourding to test.txt file?"
 
